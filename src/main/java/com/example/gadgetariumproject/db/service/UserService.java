@@ -9,4 +9,10 @@ import javax.transaction.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class UserService {
+
+
+    public AuthResponse registration(AuthRequest authRequest) {
+
+
+    }
 }

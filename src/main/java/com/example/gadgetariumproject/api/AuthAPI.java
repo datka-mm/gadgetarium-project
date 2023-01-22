@@ -1,5 +1,6 @@
 package com.example.gadgetariumproject.api;
 
+import com.example.gadgetariumproject.db.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
