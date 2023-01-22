@@ -1,6 +1,8 @@
 package com.example.gadgetariumproject.api;
 
 import com.example.gadgetariumproject.db.service.UserService;
+import com.example.gadgetariumproject.dto.request.AuthRequest;
+import com.example.gadgetariumproject.dto.response.AuthResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Auth API", description = "Registration and authentication")
 public class AuthAPI {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Operation(summary = "Sign in", description = "Any user can register")
     @PostMapping
