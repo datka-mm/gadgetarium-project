@@ -1,6 +1,6 @@
 package com.example.gadgetariumproject.db.service;
 
-import com.example.gadgetariumproject.config.security.JwtUtil;
+import com.example.gadgetariumproject.config.security.JwtTokenUtil;
 import com.example.gadgetariumproject.db.model.User;
 import com.example.gadgetariumproject.db.repository.UserRepository;
 import com.example.gadgetariumproject.dto.request.SighUpRequest;
@@ -20,7 +20,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
+    private final JwtTokenUtil jwtUtil;
 
 
     public AuthResponse registration(SighUpRequest sighUpRequest) {
