@@ -1,11 +1,14 @@
 package com.example.gadgetariumproject.db.service;
 
+import com.example.gadgetariumproject.config.security.JwtUtil;
 import com.example.gadgetariumproject.db.model.User;
 import com.example.gadgetariumproject.db.repository.UserRepository;
 import com.example.gadgetariumproject.dto.request.SighUpRequest;
 import com.example.gadgetariumproject.dto.response.AuthResponse;
+import com.example.gadgetariumproject.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,6 +19,8 @@ import javax.transaction.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
 
     public AuthResponse registration(SighUpRequest sighUpRequest) {
@@ -24,6 +29,11 @@ public class UserService {
         }
 
         User user = new User(sighUpRequest);
+        user.setPassword(passwordEncoder.encode(sighUpRequest.getPassword()));
+        user.setRole(Role.USER);
+        userRepository.save(user);
 
+        String jwtToken = jwtUtil.generateToken(user.getEmail());
+        return new AuthResponse();
     }
 }

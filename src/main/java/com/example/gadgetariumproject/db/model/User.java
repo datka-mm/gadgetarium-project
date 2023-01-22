@@ -1,6 +1,7 @@
 package com.example.gadgetariumproject.db.model;
 
 import com.example.gadgetariumproject.dto.request.SighUpRequest;
+import com.example.gadgetariumproject.enums.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
