@@ -1,6 +1,6 @@
 package com.example.gadgetariumproject.db.service;
 
-import com.example.gadgetariumproject.config.security.JwtTokenUtil;
+import com.example.gadgetariumproject.config.jwt.JwtTokenUtil;
 import com.example.gadgetariumproject.db.model.User;
 import com.example.gadgetariumproject.db.repository.UserRepository;
 import com.example.gadgetariumproject.dto.request.SighUpRequest;
@@ -8,7 +8,7 @@ import com.example.gadgetariumproject.dto.response.AuthResponse;
 import com.example.gadgetariumproject.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,7 +19,7 @@ import javax.transaction.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtUtil;
 
 

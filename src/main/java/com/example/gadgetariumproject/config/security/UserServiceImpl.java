@@ -1,4 +1,4 @@
-package com.example.gadgetariumproject.db.service;
+package com.example.gadgetariumproject.config.security;
 
 import com.example.gadgetariumproject.db.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
