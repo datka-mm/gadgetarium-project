@@ -9,6 +9,7 @@ import com.example.gadgetariumproject.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,7 +20,7 @@ import javax.transaction.Transactional;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final JwtTokenUtil jwtUtil;
 
 
@@ -34,6 +35,13 @@ public class UserService {
         userRepository.save(user);
 
         String jwtToken = jwtUtil.generateToken(user.getEmail());
-        return new AuthResponse();
+        return new AuthResponse(
+                user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getPhoneNumber(),
+                user.getEmail(),
+                jwtToken
+        );
     }
 }

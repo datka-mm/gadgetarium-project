@@ -17,7 +17,7 @@ public class AuthAPI {
 
     private final UserService userService;
 
-    @Operation(summary = "Sign in", description = "Any user can register")
+    @Operation(summary = "Sign up", description = "Any user can register")
     @PostMapping
     public AuthResponse registration(@RequestBody SighUpRequest authRequest) {
         return userService.registration(authRequest);
