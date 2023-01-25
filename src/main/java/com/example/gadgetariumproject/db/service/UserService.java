@@ -7,9 +7,10 @@ import com.example.gadgetariumproject.dto.request.SighUpRequest;
 import com.example.gadgetariumproject.dto.request.SignInRequest;
 import com.example.gadgetariumproject.dto.response.AuthResponse;
 import com.example.gadgetariumproject.enums.Role;
+import com.example.gadgetariumproject.exceptions.BadCredentialException;
+import com.example.gadgetariumproject.exceptions.BadRequestException;
+import com.example.gadgetariumproject.exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class UserService {
 
     public AuthResponse registration(SighUpRequest sighUpRequest) {
         if (userRepository.existsByEmail(sighUpRequest.getEmail())) {
-            throw new BadCredentialsException(String.format("This email: %s is already in use", sighUpRequest.getEmail()));
+            throw new BadCredentialException(String.format("This email: %s is already in use", sighUpRequest.getEmail()));
         }
 
         User user = new User(sighUpRequest);
@@ -48,7 +49,7 @@ public class UserService {
 
     public AuthResponse login(SignInRequest request) {
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(
-                () -> new UsernameNotFoundException(String.format("User with email: %s not found!", request.getEmail())
+                () -> new NotFoundException(String.format("User with email: %s not found!", request.getEmail())
                 )
         );
 
@@ -57,7 +58,7 @@ public class UserService {
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new BadCredentialsException("Incorrect password!");
+            throw new BadCredentialException("Incorrect password!");
         }
 
         String jwtToken = jwtUtil.generateToken(user.getEmail());
