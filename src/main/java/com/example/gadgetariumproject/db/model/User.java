@@ -41,6 +41,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(cascade = {ALL})
+    private List<Notification> notification;
+
     @OneToMany(cascade = {DETACH, REFRESH, MERGE})
     private List<Favorite> favorites;
 
