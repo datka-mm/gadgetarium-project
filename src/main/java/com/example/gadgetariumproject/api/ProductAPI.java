@@ -18,11 +18,11 @@ public class ProductAPI {
 
     private final ProductService productService;
 
-    @Operation(summary = "Add product", description = "Add product")
-    @PostMapping
-    public ProductResponse addProduct(@RequestBody ProductRequest productRequest) {
-        return productService.addProduct(productRequest);
-    }
+//    @Operation(summary = "Add product", description = "Add product")
+//    @PostMapping
+//    public ProductResponse addProduct(@RequestBody ProductRequest productRequest) {
+//        return productService.addProduct(productRequest);
+//    }
 
     @Operation(summary = "Get product", description = "Get product by id")
     @GetMapping("/{id}")
