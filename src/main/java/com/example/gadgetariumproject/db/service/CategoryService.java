@@ -3,6 +3,7 @@ package com.example.gadgetariumproject.db.service;
 import com.example.gadgetariumproject.db.model.Category;
 import com.example.gadgetariumproject.db.repository.CategoryRepository;
 import com.example.gadgetariumproject.dto.request.CategoryRequest;
+import com.example.gadgetariumproject.dto.request.UpdateRequest;
 import com.example.gadgetariumproject.dto.response.CategoryResponse;
 import com.example.gadgetariumproject.dto.response.SimpleResponse;
 import com.example.gadgetariumproject.exceptions.NotFoundException;
@@ -44,6 +45,16 @@ public class CategoryService {
         );
     }
 
+    public CategoryResponse updateCategoryName(UpdateRequest request) {
+        Category category = categoryRepository.findById(request.getId()).orElseThrow(
+                () -> new NotFoundException("Category with id: " + request.getId() + " not found!")
+        );
 
+        if (!category.getName().equals(request.getName())) {
+            category.setName(request.getName());
+            categoryRepository.save(category);
+        }
 
+        return categoryRepository.getCategoryResponse(category.getId());
+    }
 }
