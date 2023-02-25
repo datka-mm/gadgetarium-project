@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -56,5 +57,9 @@ public class CategoryService {
         }
 
         return categoryRepository.getCategoryResponse(category.getId());
+    }
+
+    public List<CategoryResponse> getAllCategory() {
+        return categoryRepository.getAllCategoryResponses();
     }
 }
