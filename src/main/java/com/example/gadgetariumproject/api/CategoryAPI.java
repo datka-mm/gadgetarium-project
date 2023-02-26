@@ -52,5 +52,4 @@ public class CategoryAPI {
     public List<CategoryResponse> getAllCategories() {
         return service.getAllCategory();
     }
-
 }
