@@ -1,5 +1,6 @@
 package com.example.gadgetariumproject.db.model;
 
+import com.example.gadgetariumproject.dto.request.CategoryRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,4 +19,8 @@ public class Category {
     private Long id;
 
     private String name;
+
+    public Category(CategoryRequest request) {
+        this.name = request.getName();
+    }
 }
