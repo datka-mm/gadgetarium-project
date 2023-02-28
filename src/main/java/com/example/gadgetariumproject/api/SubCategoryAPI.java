@@ -1,8 +1,11 @@
 package com.example.gadgetariumproject.api;
 
+import com.example.gadgetariumproject.db.service.SubCategoryService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @Tag(name = "SubCategory API", description = "All endpoints of subCategories")
 public class SubCategoryAPI {
+
+    private final SubCategoryService service;
+
+    @Operation(summary = "Add sub category", description = "Add new sub category")
+    @PostMapping
 
 
 }
