@@ -22,7 +22,7 @@ public class SubCategoryService {
     private final SubCategoryRepository subCategoryRepository;
     private final CategoryRepository categoryRepository;
 
-    //if Category's and SubCategory's relationship is bidirectional must add method
+
     public SubCategoryResponse addSubCategory(SubCategoryRequest request) {
         Category category = categoryRepository.findById(request.getCategoryId()).orElseThrow(
                 () -> new NotFoundException("Category with id: " + request.getCategoryId() + " not found!")
@@ -57,7 +57,7 @@ public class SubCategoryService {
                 () -> new NotFoundException("SubCategory with id: " + id + " not found!")
         );
 
-        subCategoryRepository.deleteById(id);
+        subCategoryRepository.deleteById(subCategory.getId());
         return new SimpleResponse("SubCategory with id: " + id + " successfully deleted!", "OK");
     }
 }
