@@ -22,4 +22,10 @@ public interface SubCategoryRepository extends JpaRepository<SubCategory, Long> 
             "s.name) " +
             "from SubCategory s where s.id = :id")
     SubCategoryResponse getSubCategoryResponse(Long id);
+
+    @Query("select new com.example.gadgetariumproject.dto.response.SubCategoryResponse(" +
+            "s.id, " +
+            "s.name) " +
+            "from SubCategory s where s.category.id = :id")
+    List<SubCategoryResponse> getAllSubCategoryResponseByCategoryId(Long id);
 }

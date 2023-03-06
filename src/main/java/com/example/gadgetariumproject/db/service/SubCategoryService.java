@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -29,6 +30,7 @@ public class SubCategoryService {
         );
 
         SubCategory subCategory = new SubCategory(request);
+        category.addSubCategory(subCategory);
         return subCategoryRepository.getSubCategoryResponse(subCategory.getId());
     }
 
@@ -59,5 +61,9 @@ public class SubCategoryService {
 
         subCategoryRepository.deleteById(subCategory.getId());
         return new SimpleResponse("SubCategory with id: " + id + " successfully deleted!", "OK");
+    }
+
+        public List<SubCategoryResponse> getAllSubCategoriesByCategoryId(Long id) {
+        return subCategoryRepository.getAllSubCategoryResponseByCategoryId(id);
     }
 }

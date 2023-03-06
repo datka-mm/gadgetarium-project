@@ -1,6 +1,5 @@
 package com.example.gadgetariumproject.api;
 
-import com.example.gadgetariumproject.db.model.SubCategory;
 import com.example.gadgetariumproject.db.service.SubCategoryService;
 import com.example.gadgetariumproject.dto.request.SubCategoryRequest;
 import com.example.gadgetariumproject.dto.request.UpdateRequest;
@@ -45,7 +44,7 @@ public class SubCategoryAPI {
     @Operation(summary = "Get all sub category", description = "Get all sub category by category id")
     @GetMapping("/{categoryId}")
     public List<SubCategoryResponse> getAll(@PathVariable Long categoryId) {
-        return service.getAll(categoryId);
+        return service.getAllSubCategoriesByCategoryId(categoryId);
     }
 
     @Operation(summary = "Delete sub category", description = "Delete sub category id")
