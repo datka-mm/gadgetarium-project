@@ -6,11 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -44,8 +42,11 @@ public class User implements UserDetails {
     @OneToMany(cascade = {ALL})
     private List<Notification> notification;
 
-    @OneToMany(cascade = {DETACH, REFRESH, MERGE})
+    @OneToMany(cascade = {ALL})
     private List<Favorite> favorites;
+
+    @OneToMany(cascade = {ALL})
+    private List<Comment> comments;
 
     public User(SighUpRequest sighUpRequest) {
         this.firstName = sighUpRequest.getFirstName();
