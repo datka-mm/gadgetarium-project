@@ -32,6 +32,8 @@ public class User implements UserDetails {
 
     private String phoneNumber;
 
+    private String image;
+
     private String email;
 
     private String password;
