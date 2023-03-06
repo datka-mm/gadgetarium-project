@@ -25,7 +25,7 @@ public class CategoryService {
                 () -> new NotFoundException("Category with id: " + id + " not found!")
         );
 
-        return categoryRepository.getCategoryResponse(id);
+        return categoryRepository.getCategoryResponse(category.getId());
     }
 
     public CategoryResponse addNewCategory(CategoryRequest request) {

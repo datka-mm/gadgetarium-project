@@ -1,5 +1,6 @@
 package com.example.gadgetariumproject.db.model;
 
+import com.example.gadgetariumproject.dto.request.SubCategoryRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,4 +19,8 @@ public class SubCategory {
     private Long id;
 
     private String name;
+
+    public SubCategory(SubCategoryRequest request) {
+        this.name = request.getName();
+    }
 }
