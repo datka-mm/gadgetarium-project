@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Table(name = "sub_categories")
 @Getter
@@ -19,6 +21,9 @@ public class SubCategory {
     private Long id;
 
     private String name;
+
+    @ManyToOne(cascade = {MERGE, REFRESH, DETACH})
+    private Category category;
 
     public SubCategory(SubCategoryRequest request) {
         this.name = request.getName();
